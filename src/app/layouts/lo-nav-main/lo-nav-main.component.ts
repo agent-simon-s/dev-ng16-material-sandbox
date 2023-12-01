@@ -12,6 +12,9 @@ import { RouterLink } from '@angular/router';
       <h1><a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">HOME</a></h1>
       <nav>
         <ul>
+          <li><a routerLink="/mat-table" routerLinkActive="active" ariaCurrentWhenActive="page">MAT TABLE</a></li>
+          <li><a routerLink="/mat-table/working" routerLinkActive="active" ariaCurrentWhenActive="page">MAT TABLE WORKING</a></li>
+          <li>--</li>
           <li><a routerLink="/tables" routerLinkActive="active" ariaCurrentWhenActive="page">TABLES</a></li>
           <li><a routerLink="/tables/data" routerLinkActive="active" ariaCurrentWhenActive="page">DATA TABLE</a></li>
           <li><a routerLink="/tables/page" routerLinkActive="active" ariaCurrentWhenActive="page">PAGING TABLE</a></li>
@@ -21,6 +24,8 @@ import { RouterLink } from '@angular/router';
           <li><a routerLink="/tables/header" routerLinkActive="active" ariaCurrentWhenActive="page">HEADER TABLE</a></li>
           <li><a routerLink="/tables/buttons" routerLinkActive="active" ariaCurrentWhenActive="page">BUTTONS TABLE</a></li>
           <li><a routerLink="/tables/sink" routerLinkActive="active" ariaCurrentWhenActive="page">SINK TABLE</a></li>
+          <li><a routerLink="/tables/all" routerLinkActive="active" ariaCurrentWhenActive="page">ALL TABLES</a></li>
+          <li>--</li>
           <li><a routerLink="/hot-stepper" routerLinkActive="active" ariaCurrentWhenActive="page">HOT STEPPER</a></li>
         </ul>
       </nav>

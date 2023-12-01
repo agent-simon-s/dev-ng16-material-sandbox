@@ -6,60 +6,48 @@ import { CmpHotStepperComponent } from './components/cmp-hot-stepper/cmp-hot-ste
 
 export const routes: Routes = [
 	{ path: 'home', component: PageHomeComponent, title: 'A17 & Material Testbed' },
-	{ path: 'tables/:id',
+	{ path: 'tables',
+		pathMatch: 'full',
 		component: PageTablesComponent,
 		title: 'Tables with Params',
 		data: {
-			role: 'supercala'
+			routerDataParam: 'default'
 		},
 		resolve:{
 			routerResolverData: () => 'hello from the future'
 		}
 	},
-	// { path: 'tables', component: PageTablesComponent, pathMatch: 'full', title: 'Tables'
-	// 	children: [
-	//       {
-	//         path: 'data', // child route path
-	//         component: PageTablesComponent, // child route
-	//         title: 'Tables: data driven'
-	//       },
-	//       {
-	//         path: 'sort',
-	//         component: PageTablesComponent,
-	//         title: 'Tables: dynamically data driven'
-	//       },
-	//       {
-	//         path: 'header',
-	//         component: PageTablesComponent,
-	//         title: 'Tables: With Header'
-	//       },
-	//       {
-	//         path: 'paged',
-	//         component: PageTablesComponent,
-	//         title: 'Tables: With paged'
-	//       },
-	//       {
-	//         path: 'search',
-	//         component: PageTablesComponent,
-	//         title: 'Tables: Searchable'
-	//       },
-	//       {
-	//         path: 'buttons',
-	//         component: PageTablesComponent,
-	//         title: 'Tables: Buttons'
-	//       },
-	//       {
-	//         path: 'linked',
-	//         component: PageTablesComponent,
-	//         title: 'Tables: linked'
-	//       },
-	//       {
-	//         path: 'resize',
-	//         component: PageTablesComponent,
-	//         title: 'Tables: resize'
-	//       },
-	//     ],
-    // },
+	{ path: 'tables/:id',
+		component: PageTablesComponent,
+		title: 'Tables with Params',
+		data: {
+			routerDataParam: 'supercala'
+		},
+		resolve:{
+			routerResolverData: () => 'hello from the future'
+		}
+	},
+	{ path: 'mat-table',
+		pathMatch: 'full',
+		component: PageMatTableComponent,
+		title: 'Default schema Table',
+		data: {
+			routerDataParam: 'supercala'
+		},
+		resolve:{
+			routerResolverData: () => 'hello from the future'
+		}
+	},
+	{ path: 'mat-table/:id',
+		component: PageMatTableComponent,
+		title: 'Table with Params',
+		data: {
+			routerDataParam: 'supercala'
+		},
+		resolve:{
+			routerResolverData: () => 'hello from the future'
+		}
+	},
 	{ path: 'other', component: PageTablesComponent, title: 'foo' },
 	{ path: 'header', component: PageTablesComponent, title: 'foo' },
 	{ path: 'search', component: PageTablesComponent, title: 'foo' },
