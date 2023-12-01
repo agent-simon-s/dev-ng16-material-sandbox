@@ -3,7 +3,7 @@
 	padding-top: 3.1rem;
 	padding-left: 1rem;
 	background-color: #222;
-	color: #EEE;
+	color: #DDD;
 	width:10rem;
 	float: left;
 	height: auto;
@@ -12,14 +12,28 @@
 
 	h1{
 		color: #EEE;
-		font-size: 1.2rem;
+		font-size: 1.25rem;
 		font-weight: 400;
+		margin-top: 0;
+		margin-bottom: 1.3rem;
+		& > a {
+			font-size: 1.25rem;
+		}
 	}
 	a{
-		color: #EEE;
-		font-size: 1rem;
+		color: #DDD;
+		font-size: 0.88rem;
 		font-weight: 400;
-	}
+		text-decoration: none;
+		&:hover {
+			color:#FFF;
+			text-decoration: underline;
+		}
+		&.acvtive {
+			color:#0CF;
+			text-decoration: underline;
+		}
+	} 
 	ul{
 		list-style:none;
 		margin: 0;
@@ -27,9 +41,9 @@
 		li{
 			list-style:none;
 			margin: 0;
-			padding-top: 0.5rem;
-			padding-left: 1rem;
-			padding-right: 1rem;
+			padding-top: 0.2rem;
+			padding-left: 0.1rem;
+			padding-right: 0.1rem;
 			padding-bottom: 0.5rem;
 			font-size: 1rem;
 			font-weight: 400;
