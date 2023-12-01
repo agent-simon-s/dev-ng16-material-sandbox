@@ -1,0 +1,38 @@
+.left-side{
+	display: inline-block;
+	padding-top: 3.1rem;
+	padding-left: 1rem;
+	background-color: #222;
+	color: #EEE;
+	width:10rem;
+	float: left;
+	height: auto;
+	min-height: 80vh;
+	max-height: 99%;
+
+	h1{
+		color: #EEE;
+		font-size: 1.2rem;
+		font-weight: 400;
+	}
+	a{
+		color: #EEE;
+		font-size: 1rem;
+		font-weight: 400;
+	}
+	ul{
+		list-style:none;
+		margin: 0;
+		padding: 0;
+		li{
+			list-style:none;
+			margin: 0;
+			padding-top: 0.5rem;
+			padding-left: 1rem;
+			padding-right: 1rem;
+			padding-bottom: 0.5rem;
+			font-size: 1rem;
+			font-weight: 400;
+		}
+	}
+}
