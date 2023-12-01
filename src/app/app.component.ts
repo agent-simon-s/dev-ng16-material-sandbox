@@ -11,7 +11,7 @@ import { MatSort} from '@angular/material/sort';
 
 import { PageTablesComponent } from './pages/page-tables/page-tables.component';
 import { LoHeaderMainComponent } from './layouts/lo-header-main/lo-header-main.component';
-import { NavMainComponent } from './layouts/nav-main/nav-main.component';
+import { LoNavMainComponent } from './layouts/lo-nav-main/lo-nav-main.component';
 
 
 @Component({
@@ -27,7 +27,7 @@ import { NavMainComponent } from './layouts/nav-main/nav-main.component';
     MatButtonModule, 
     MatSlideToggleModule, 
     LoHeaderMainComponent, 
-    NavMainComponent, 
+    LoNavMainComponent, 
     PageTablesComponent, 
     MatTableModule
   ]
