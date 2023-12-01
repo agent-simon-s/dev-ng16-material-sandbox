@@ -1,6 +1,7 @@
 {
-  "name": "dev-ng-mat-test",
+  "name": "dev-ng17-mat-sandbox",
   "version": "0.0.0",
+  "author": "sjds",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 4040",

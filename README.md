@@ -1,4 +1,6 @@
-# DevNgMatTest
+# Dev-Ng17-Mat-sandbox
+
+This is a small angular standalone app. This is a development sandbox for A17 and MD3. Built expressly to test, break, and improve my use of the latest version of angular, and the current version of Material design
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.2.
 
