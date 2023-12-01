@@ -45,38 +45,38 @@ import { CmpDataTableColLoopComponent } from '../../components/cmp-data-table-co
         </div>
       </div>
 
-     <ng-container *ngIf="(id==='data')">
+     <ng-container *ngIf="(routerDataParam==='default' || id==='all')">
         <h2>Default Table</h2>
         <app-cmp-data-table /> 
       </ng-container>
 
-      <ng-container *ngIf="(id==='sort')">
+      <ng-container *ngIf="(id==='sort'|| id==='all')">
         <h2>Sort Table</h2>
         <app-cmp-data-table-sort /> 
       </ng-container>
 
-      <ng-container *ngIf="(id==='page')">
+      <ng-container *ngIf="(id==='page'|| id==='all')">
         <h2>Pagination Table</h2>
         <app-cmp-data-table-page />
       </ng-container>
 
-      <ng-container *ngIf="(id==='loop')">
+      <ng-container *ngIf="(id==='loop'|| id==='all')">
         <h2>Looping column Table</h2>
         <app-cmp-data-table-loop />
       </ng-container>
 
-      <ng-container *ngIf="(id==='col-loop')">
+      <ng-container *ngIf="(id==='col-loop'|| id==='all')">
         <h2>Looping column Table</h2>
         <app-cmp-data-table-col-loop />
       </ng-container>
 
-      <ng-container *ngIf="(id==='sort')">
+      <ng-container *ngIf="(id==='sort'|| id==='all')">
         <h2>Sort Table</h2>
         <app-cmp-data-table-sort /> 
       </ng-container>
 
-      <ng-container *ngIf="(id==='search || filter')">
-        <h2>Sort Table</h2>
+      <ng-container *ngIf="(id==='search' || id==='filter' || id==='all')">
+        <h2>Search Table</h2>
         <app-cmp-data-table-filter />
       </ng-container>
 
