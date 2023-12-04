@@ -6,9 +6,11 @@ import { MatTableModule } from '@angular/material/table';
 import { CmpDataTableComponent } from '../../components/cmp-data-table/cmp-data-table.component';
 import { CmpDataTablePageComponent } from '../../components/cmp-data-table-page/cmp-data-table-page.component';
 import { CmpDataTableSortComponent } from '../../components/cmp-data-table-sort/cmp-data-table-sort.component';
-import { CmpDataTableFilterComponent } from '../../components/cmp-data-table-filter/cmp-data-table-filter.component';
+import { CmpDataTableDragComponent } from '../../components/cmp-data-table-drag/cmp-data-table-drag.component';
 import { CmpDataTableLoopComponent } from '../../components/cmp-data-table-loop/cmp-data-table-loop.component';
 import { CmpDataTableColLoopComponent } from '../../components/cmp-data-table-col-loop/cmp-data-table-col-loop.component';
+import { CmpTableSearchComponent } from '../../components/cmp-table-search/cmp-table-search.component';
+import { CmpDataTableFilterComponent } from '../../components/cmp-data-table-filter/cmp-data-table-filter.component';
 
 /**
  * @title Table with columns defined using a for loop instead of statically written in the template.
@@ -18,19 +20,21 @@ import { CmpDataTableColLoopComponent } from '../../components/cmp-data-table-co
   selector: 'app-page-tables',
   standalone: true,
   imports: [
-    CommonModule, 
-    MatTableModule, 
-    MatButtonModule, 
-    CmpDataTableComponent, 
-    CmpDataTablePageComponent, 
-    CmpDataTableSortComponent, 
-    CmpDataTableFilterComponent, 
+    CommonModule,
+    MatTableModule,
+    MatButtonModule,
+    CmpDataTableComponent,
+    CmpDataTablePageComponent,
+    CmpDataTableSortComponent,
+    CmpDataTableFilterComponent,
+    CmpDataTableDragComponent,
     CmpDataTableLoopComponent,
-    CmpDataTableColLoopComponent  
+    CmpDataTableColLoopComponent,
+    CmpTableSearchComponent
     ],
   template: `
     <div>
-      <h2 class="page-title">Items ({{id}})</h2>
+      <h2 class="page-title">Items ({{id }})</h2>
       <p>
         This into text also tests parameters. '{{id}}' is the :id passed through from the url or path. The 'routerDataParam' is '{{routerDataParam}}'. While the 'queryParam' is '{{queryParam}}'. '{{routerResolverData}}' is the router resolver data.
       </p>
@@ -45,14 +49,23 @@ import { CmpDataTableColLoopComponent } from '../../components/cmp-data-table-co
         </div>
       </div>
 
-     <ng-container *ngIf="(routerDataParam==='default' || id==='all')">
+      <ng-container *ngIf="(id==='search' || id==='filter' || id==='all')">
+        <app-cmp-table-search />
+      </ng-container>
+
+      <ng-container *ngIf="(routerDataParam==='default' || id==='all')">
         <h2>Default Table</h2>
-        <app-cmp-data-table /> 
+        <app-cmp-data-table />
       </ng-container>
 
       <ng-container *ngIf="(id==='sort'|| id==='all')">
         <h2>Sort Table</h2>
-        <app-cmp-data-table-sort /> 
+        <app-cmp-data-table-sort />
+      </ng-container>
+
+      <ng-container *ngIf="(id==='drag'|| id==='all')">
+        <h2>Drag and Drop columns Table</h2>
+        <app-cmp-data-table-drag />
       </ng-container>
 
       <ng-container *ngIf="(id==='page'|| id==='all')">
@@ -60,25 +73,21 @@ import { CmpDataTableColLoopComponent } from '../../components/cmp-data-table-co
         <app-cmp-data-table-page />
       </ng-container>
 
-      <ng-container *ngIf="(id==='loop'|| id==='all')">
-        <h2>Looping column Table</h2>
-        <app-cmp-data-table-loop />
-      </ng-container>
-
-      <ng-container *ngIf="(id==='col-loop'|| id==='all')">
-        <h2>Looping column Table</h2>
-        <app-cmp-data-table-col-loop />
-      </ng-container>
-
-      <ng-container *ngIf="(id==='sort'|| id==='all')">
-        <h2>Sort Table</h2>
-        <app-cmp-data-table-sort /> 
-      </ng-container>
-
       <ng-container *ngIf="(id==='search' || id==='filter' || id==='all')">
         <h2>Search Table</h2>
         <app-cmp-data-table-filter />
       </ng-container>
+
+      <ng-container *ngIf="(id==='loop'|| id==='all')">
+        <h2>Looping Table</h2>
+        <app-cmp-data-table-loop />
+      </ng-container>
+
+      <ng-container *ngIf="(id==='col-loop'|| id==='all')">
+        <h2>Looping column ex Table</h2>
+        <app-cmp-data-table-col-loop />
+      </ng-container>
+
 
     </div>
     <br>
@@ -93,7 +102,7 @@ export class PageTablesComponent {
   // }
 
   //new hotness
-  @Input() id!: string;
+  @Input() id!: string | undefined;
   @Input() queryParam!: string;
   @Input() routerDataParam!: string;
   @Input() routerResolverData!: string;
