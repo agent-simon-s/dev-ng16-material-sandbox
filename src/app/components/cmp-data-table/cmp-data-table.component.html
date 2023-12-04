@@ -1,9 +1,16 @@
 <!-- for columns -->
 <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8 demo-table">
+    <table 
+        mat-table
+        cdkDropList
+        cdkDropListOrientation="horizontal"
+        (cdkDropListDropped)="drop($event)"
+        [dataSource]="dataSource"  
+        class="mat-elevation-z8 demo-table"
+        >
         @for (column of columns; track column) {
             <ng-container [matColumnDef]="column.columnDef">
-                <th mat-header-cell *matHeaderCellDef>{{column.header}}</th>
+                <th mat-header-cell cdkDrag *matHeaderCellDef>{{column.header}}</th>
                 <td mat-cell *matCellDef="let row">{{column.cell(row)}}</td>
             </ng-container>
         }
