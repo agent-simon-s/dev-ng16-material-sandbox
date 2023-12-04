@@ -29,11 +29,14 @@
 			color:#FFF;
 			text-decoration: underline;
 		}
-		&.acvtive {
-			color:#0CF;
+		&.active {
+			color:#333;
 			text-decoration: underline;
 		}
-	} 
+		em {
+			color: limegreen;
+		}
+	}
 	ul{
 		list-style:none;
 		margin: 0;
