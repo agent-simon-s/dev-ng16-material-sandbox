@@ -1,4 +1,6 @@
 <mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+  <mat-label>Search</mat-label>
+<!--  <input matInput (keyup)="satelliteFilter()" placeholder="Ex. Mia" #input>-->
+  <input #searcher matInput placeholder="Search">
+  <button (click)="satelliteFilter(searcher.value)" class="search">Go</button>
 </mat-form-field>

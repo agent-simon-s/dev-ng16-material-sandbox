@@ -21,7 +21,7 @@ export const routes: Routes = [
 		component: PageTablesComponent,
 		title: 'Tables with Params',
 		data: {
-			routerDataParam: 'supercala'
+			routerDataParam: 'examples'
 		},
 		resolve:{
 			routerResolverData: () => 'hello from the future'
@@ -32,7 +32,7 @@ export const routes: Routes = [
 		component: PageMatTableComponent,
 		title: 'Default schema Table',
 		data: {
-			routerDataParam: 'supercala'
+			routerDataParam: 'material'
 		},
 		resolve:{
 			routerResolverData: () => 'hello from the future'
