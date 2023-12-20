@@ -18,6 +18,9 @@ import { MerchandiseInfo, MERCHANT_DATA } from "../../data/items_data";
   templateUrl: './cmp-data-table.component.html',
   styleUrl: './cmp-data-table.component.scss'
 })
+
+// const pageingSizes:any = [15, 30, 60]
+
 export class CmpDataTableComponent {
 
   // col as for loop
@@ -56,7 +59,7 @@ export class CmpDataTableComponent {
       columnDef: 'status',
       header: 'status',
       cell: (merch: MerchandiseInfo) => `${merch.status}`,
-    },
+    }
   ];
   dataSource = new MatTableDataSource<MerchandiseInfo>(MERCHANT_DATA);
   displayedColumns = this.columns.map(c => c.columnDef);
