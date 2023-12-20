@@ -1,0 +1,31 @@
+p{
+	max-width: 70%;
+	padding-left: 0.1rem;
+	margin-bottom: 1.8rem;
+}
+
+h2{
+	max-width: 70%;
+	padding-left: 0.1rem;
+	margin-bottom: 1rem;
+	margin-top: 3rem;
+}
+
+.table-meta-header{
+	width: 100%;
+	display: flex;
+	flex-flow:row nowrap;
+	justify-content: space-betweem;
+	align-items:baseline;
+
+	.side-a,
+	.side-b{
+		flex: 4 2 auto;
+		padding: 0.5rem 0rem;
+	}
+	.side-b{
+		flex: 2 2 auto;
+		text-align: right;
+	}
+
+}

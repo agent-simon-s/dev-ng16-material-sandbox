@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { PageHomeComponent } from './pages/page-home/page-home.component';
 import { PageTablesComponent } from './pages/page-tables/page-tables.component';
+import { PageTableDetailComponent } from './pages/page-table-details/page-table-detail.component';
 import { PageMatTableComponent } from './pages/page-mat-table/page-mat-table.component';
 import { CmpHotStepperComponent } from './components/cmp-hot-stepper/cmp-hot-stepper.component';
 
@@ -19,6 +20,16 @@ export const routes: Routes = [
 	},
 	{ path: 'tables/:id',
 		component: PageTablesComponent,
+		title: 'Tables with Params',
+		data: {
+			routerDataParam: 'examples'
+		},
+		resolve:{
+			routerResolverData: () => 'hello from the future'
+		}
+	},
+	{ path: 'table-detail/:id',
+		component: PageTableDetailComponent,
 		title: 'Tables with Params',
 		data: {
 			routerDataParam: 'examples'

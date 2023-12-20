@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { CmpDataTableComponent } from '../../components/cmp-data-table/cmp-data-table.component';
@@ -21,6 +21,7 @@ import { CmpTableSearchComponent } from '../../components/cmp-table-search/cmp-t
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     MatTableModule,
     MatButtonModule,
     CmpDataTableComponent,
@@ -39,26 +40,45 @@ import { CmpTableSearchComponent } from '../../components/cmp-table-search/cmp-t
         This into text also tests parameters. '{{id}}' is the :id passed through from the url or path. The 'routerDataParam' is '{{routerDataParam}}'. While the 'queryParam' is '{{queryParam}}'. '{{routerResolverData}}' is the router resolver data.
       </p>
 
-            <ng-container *ngIf="(id==='search' || id==='filter' || id==='all')">
+            <ng-container *ngIf="(id ==='search' || id ==='filter' || id ==='all')">
               <p>This is shown on search, filter or all</p>
             </ng-container>
 
-            <ng-container *ngIf="(id === 'search' || id === 'filter' || id === 'all')">
-              <p>This is shown on search, filter or all</p>
+            <ng-container *ngIf="(id === 'filter-form' || id === 'all')">
+              <p>This is shown on filter Form</p>
+              
             </ng-container>
 
-            <div class="table-meta-header">
-              <div class="side-a">
-                <button mat-raised-button color="primary">BUTTON</button>
+            <ng-container *ngIf="(id === 'filter-form' || id === 'all')">
+              <p>This is shown on search, filter or all</p>
+              <div class="table-meta-header">
+                <div class="side-a">
+                  <button mat-raised-button color="primary">BUTTON</button>
+                </div>
+                <div class="side-b">
+                  <app-cmp-table-search></app-cmp-table-search>
+                </div>
               </div>
-              <div class="side-b">
-                <app-cmp-table-search></app-cmp-table-search>
-              </div>
-            </div>
+            </ng-container>
+
+            <ng-container *ngIf="(id==='search' || id==='filter' || id === 'filter-form' || id==='all')">
+              <h2>Filter Table</h2>
+              <app-cmp-data-table-filter [linkItem]="true" [showSearch]="true" />
+            </ng-container>
 
             <ng-container *ngIf="(routerDataParam==='default' || id==='all')">
               <h2>Default Table</h2>
               <app-cmp-data-table />
+            </ng-container>
+
+            <ng-container *ngIf="(id==='loop'|| id==='all')">
+              <h2>Looping Table</h2>
+              <app-cmp-data-table-loop />
+            </ng-container>
+
+            <ng-container *ngIf="(id==='page'|| id==='all')">
+              <h2>Pagination Table</h2>
+              <app-cmp-data-table-page />
             </ng-container>
 
             <ng-container *ngIf="(id==='sort'|| id==='all')">
@@ -69,21 +89,6 @@ import { CmpTableSearchComponent } from '../../components/cmp-table-search/cmp-t
             <ng-container *ngIf="(id==='drag'|| id==='all')">
               <h2>Drag and Drop Columns Table</h2>
               <app-cmp-data-table-drag />
-            </ng-container>
-
-            <ng-container *ngIf="(id==='page'|| id==='all')">
-              <h2>Pagination Table</h2>
-              <app-cmp-data-table-page />
-            </ng-container>
-
-            <ng-container *ngIf="(id==='search' || id==='filter' || id==='all')">
-              <h2>Filter Table</h2>
-              <app-cmp-data-table-filter [linkItem]="true" [showSearch]="true" />
-            </ng-container>
-
-            <ng-container *ngIf="(id==='loop'|| id==='all')">
-              <h2>Looping Table</h2>
-              <app-cmp-data-table-loop />
             </ng-container>
 
             <ng-container *ngIf="(id==='col-loop'|| id==='all')">
