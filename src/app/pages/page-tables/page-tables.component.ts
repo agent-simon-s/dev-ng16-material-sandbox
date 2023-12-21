@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { CmpDataTableComponent } from '../../components/cmp-data-table/cmp-data-table.component';
@@ -13,7 +13,7 @@ import { CmpDataTableFilterComponent } from '../../components/cmp-data-table-fil
 import { CmpTableSearchComponent } from '../../components/cmp-table-search/cmp-table-search.component';
 
 /**
- * @title Table with columns defined using a for loop instead of statically written in the template.
+ * @title Tables Page. Page Wrapper, conditionally displays all table variants
  */
 
 @Component({
@@ -40,64 +40,64 @@ import { CmpTableSearchComponent } from '../../components/cmp-table-search/cmp-t
         This into text also tests parameters. '{{id}}' is the :id passed through from the url or path. The 'routerDataParam' is '{{routerDataParam}}'. While the 'queryParam' is '{{queryParam}}'. '{{routerResolverData}}' is the router resolver data.
       </p>
 
-            <ng-container *ngIf="(id ==='search' || id ==='filter' || id ==='all')">
-              <p>This is shown on search, filter or all</p>
-            </ng-container>
+      <ng-container *ngIf="(id ==='search' || id ==='filter' || id ==='all')">
+        <p>This is shown on search, filter or all</p>
+      </ng-container>
 
-            <ng-container *ngIf="(id === 'filter-form' || id === 'all')">
-              <p>This is shown on filter Form</p>
-              
-            </ng-container>
+      <ng-container *ngIf="(id === 'filter-form' || id === 'all')">
+        <p>This is shown on filter Form</p>
+        
+      </ng-container>
 
-            <ng-container *ngIf="(id === 'filter-form' || id === 'all')">
-              <p>This is shown on search, filter or all</p>
-              <div class="table-meta-header">
-                <div class="side-a">
-                  <button mat-raised-button color="primary">BUTTON</button>
-                </div>
-                <div class="side-b">
-                  <app-cmp-table-search></app-cmp-table-search>
-                </div>
-              </div>
-            </ng-container>
-
-            <ng-container *ngIf="(id==='search' || id==='filter' || id === 'filter-form' || id==='all')">
-              <h2>Filter Table</h2>
-              <app-cmp-data-table-filter [linkItem]="true" [showSearch]="true" />
-            </ng-container>
-
-            <ng-container *ngIf="(routerDataParam==='default' || id==='all')">
-              <h2>Default Table</h2>
-              <app-cmp-data-table />
-            </ng-container>
-
-            <ng-container *ngIf="(id==='loop'|| id==='all')">
-              <h2>Looping Table</h2>
-              <app-cmp-data-table-loop />
-            </ng-container>
-
-            <ng-container *ngIf="(id==='page'|| id==='all')">
-              <h2>Pagination Table</h2>
-              <app-cmp-data-table-page />
-            </ng-container>
-
-            <ng-container *ngIf="(id==='sort'|| id==='all')">
-              <h2>Sort Table</h2>
-              <app-cmp-data-table-sort />
-            </ng-container>
-
-            <ng-container *ngIf="(id==='drag'|| id==='all')">
-              <h2>Drag and Drop Columns Table</h2>
-              <app-cmp-data-table-drag />
-            </ng-container>
-
-            <ng-container *ngIf="(id==='col-loop'|| id==='all')">
-              <h2>Looping column ex Table</h2>
-              <app-cmp-data-table-col-loop />
-            </ng-container>
-
-
+      <ng-container *ngIf="(id === 'filter-form' || id === 'all')">
+        <p>This is shown on search, filter or all</p>
+        <div class="table-meta-header">
+          <div class="side-a">
+            <button mat-raised-button color="primary">BUTTON</button>
           </div>
+          <div class="side-b">
+            <app-cmp-table-search></app-cmp-table-search>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="(id==='search' || id==='filter' || id === 'filter-form' || id==='all')">
+        <h2>Filter Table</h2>
+        <app-cmp-data-table-filter [linkItem]="true" [showSearch]="true" />
+      </ng-container>
+
+      <ng-container *ngIf="(routerDataParam==='default' || id==='all')">
+        <h2>Default Table</h2>
+        <app-cmp-data-table />
+      </ng-container>
+
+      <ng-container *ngIf="(id==='loop'|| id==='all')">
+        <h2>Looping Table</h2>
+        <app-cmp-data-table-loop />
+      </ng-container>
+
+      <ng-container *ngIf="(id==='page'|| id==='all')">
+        <h2>Pagination Table</h2>
+        <app-cmp-data-table-page />
+      </ng-container>
+
+      <ng-container *ngIf="(id==='sort'|| id==='all')">
+        <h2>Sort Table</h2>
+        <app-cmp-data-table-sort />
+      </ng-container>
+
+      <ng-container *ngIf="(id==='drag'|| id==='all')">
+        <h2>Drag and Drop Columns Table</h2>
+        <app-cmp-data-table-drag />
+      </ng-container>
+
+      <ng-container *ngIf="(id==='col-loop'|| id==='all')">
+        <h2>Looping column ex Table</h2>
+        <app-cmp-data-table-col-loop />
+      </ng-container>
+
+
+    </div>
 `,
   styleUrl: './page-tables.component.scss'
 })
@@ -107,6 +107,8 @@ export class PageTablesComponent {
   // constructor(private activatedRoute:ActivatedRoute ) {
   //   const id = this.activatedRoute.snapshot.params['id'];
   // }
+  private router = Inject(Router);
+  private route = Inject(ActivatedRoute);
 
   //new hotness
   @Input() id!: string | undefined;

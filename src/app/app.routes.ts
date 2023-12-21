@@ -3,10 +3,21 @@ import { PageHomeComponent } from './pages/page-home/page-home.component';
 import { PageTablesComponent } from './pages/page-tables/page-tables.component';
 import { PageTableDetailComponent } from './pages/page-table-details/page-table-detail.component';
 import { PageMatTableComponent } from './pages/page-mat-table/page-mat-table.component';
+import { PgTableCloneComponent } from './pages/pg-table-clone/pg-table-clone.component';
 import { CmpHotStepperComponent } from './components/cmp-hot-stepper/cmp-hot-stepper.component';
 
 export const routes: Routes = [
 	{ path: 'home', component: PageHomeComponent, title: 'A17 & Material Testbed' },
+	{ path: 'tables/:id',
+		component: PageTablesComponent,
+		title: 'Tables with Params',
+		data: {
+			routerDataParam: 'examples'
+		},
+		resolve:{
+			routerResolverData: () => 'hello from the future'
+		}
+	},
 	{ path: 'tables',
 		pathMatch: 'full',
 		component: PageTablesComponent,
@@ -18,8 +29,8 @@ export const routes: Routes = [
 			routerResolverData: () => 'hello from the future'
 		}
 	},
-	{ path: 'tables/:id',
-		component: PageTablesComponent,
+	{ path: 'table-detail/:id',
+		component: PageTableDetailComponent,
 		title: 'Tables with Params',
 		data: {
 			routerDataParam: 'examples'
@@ -28,11 +39,11 @@ export const routes: Routes = [
 			routerResolverData: () => 'hello from the future'
 		}
 	},
-	{ path: 'table-detail/:id',
-		component: PageTableDetailComponent,
-		title: 'Tables with Params',
+	{ path: 'mat-table/:id',
+		component: PageMatTableComponent,
+		title: 'Table with Params',
 		data: {
-			routerDataParam: 'examples'
+			routerDataParam: 'supercala'
 		},
 		resolve:{
 			routerResolverData: () => 'hello from the future'
@@ -49,11 +60,12 @@ export const routes: Routes = [
 			routerResolverData: () => 'hello from the future'
 		}
 	},
-	{ path: 'mat-table/:id',
-		component: PageMatTableComponent,
-		title: 'Table with Params',
+	{ path: 'table-uni-clone',
+		pathMatch: 'full',
+		component: PgTableCloneComponent,
+		title: 'Working Clone',
 		data: {
-			routerDataParam: 'supercala'
+			routerDataParam: 'material'
 		},
 		resolve:{
 			routerResolverData: () => 'hello from the future'

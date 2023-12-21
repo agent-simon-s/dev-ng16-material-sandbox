@@ -1,0 +1,90 @@
+<div class="mat-elevation-z8">
+
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- Id Column -->
+    <ng-container matColumnDef="sku">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Item No.</th>
+      <td mat-cell *matCellDef="let row">
+      @if (linkItem) {
+        <a (click)="myClickMethod(row.sku)" >{{row.sku}}</a>
+      } @else {
+        {{row.sku}}
+      }
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+
+    <!-- brand Column -->
+    <ng-container matColumnDef="brand">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Brand</th>
+      <td mat-cell *matCellDef="let row">
+      @if (linkBrand) {
+        <a (click)="myClickMethod(row.brand)" >{{row.brand}}</a>
+      } @else {
+        {{row.brand}}
+      }
+      </td>
+    </ng-container>
+
+    <!-- stock Column -->
+    <ng-container matColumnDef="stock">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Stock*</th>
+      <td mat-cell *matCellDef="let row">{{row.stock}}</td>
+    </ng-container>
+
+    <!-- cost Column -->
+    <ng-container matColumnDef="cost">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Cost</th>
+      <td mat-cell *matCellDef="let row">${{row.cost}}</td>
+    </ng-container>
+
+    <!-- price Column -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Retail</th>
+      <td mat-cell *matCellDef="let row">${{row.price}}</td>
+    </ng-container>
+
+    <!-- status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td mat-cell *matCellDef="let row">{{row.status}}</td>
+    </ng-container>
+
+    <!-- MoDate Column -->
+    <ng-container matColumnDef="modate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Modification Date</th>
+      <td mat-cell *matCellDef="let row">{{row.modate}}</td>
+    </ng-container>
+
+    <!-- link Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+      <td mat-cell class="col-narrow" *matCellDef="let row">
+      @if (linkActions) {
+        <button (click)="myClickMethod(row.sku)"><mat-icon>more_vert</mat-icon></button>
+      }
+      </td>
+    </ng-container>
+   
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  @if (pageable) {
+   <mat-paginator #paginator
+      [length]="dataSource.data.length"
+      [pageIndex]="pageindex"
+      [pageSize]="pagesize"
+      [pageSizeOptions]="pagesizeoptions"
+      showFirstLastButtons
+      aria-label="Select page">
+    </mat-paginator>
+  }
+ 
+</div>
+

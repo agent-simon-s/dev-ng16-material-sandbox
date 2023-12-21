@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { routes } from '../../app.routes';
 
 
 @Component({
   selector: 'app-lo-nav-main',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterModule],
   template: `
     <div class="left-side">
       <h1><a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">HOME</a></h1>
@@ -29,6 +29,7 @@ import { routes } from '../../app.routes';
           <li> - <a routerLink="/tables/buttons" routerLinkActive="active" ariaCurrentWhenActive="page" disabled>With BUTTONS __</a></li>
           <li> - <a routerLink="/tables/sink" routerLinkActive="active" ariaCurrentWhenActive="page" disabled>With KITCHEN SINK __</a></li>
           <li> - <a routerLink="/tables/sink" routerLinkActive="active" ariaCurrentWhenActive="page" disabled>adding all</a></li>
+          <li> - <a routerLink="/table-uni-clone" routerLinkActive="active" ariaCurrentWhenActive="page">Uni-Clone</a></li>
           <li> - <a routerLink="/tables/all" routerLinkActive="active" ariaCurrentWhenActive="page">ALL</a></li>
           <li><hr /></li>
           <li><a routerLink="/hot-stepper" routerLinkActive="active" ariaCurrentWhenActive="page">HOT STEPPER</a></li>
@@ -40,4 +41,6 @@ import { routes } from '../../app.routes';
 })
 export class LoNavMainComponent {
   //@Output() isActiveChange: EventEmitter<boolean>;
+  private router = Inject(Router);
+  private route = Inject(ActivatedRoute);
 }

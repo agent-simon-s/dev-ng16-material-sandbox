@@ -1,4 +1,11 @@
-export interface SpiritInfo {
+import { DataSource } from "@angular/cdk/collections";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { map } from "rxjs/operators";
+import { Observable, of as observableOf, merge } from "rxjs";
+
+// TODO: Replace this with your own data model type
+export interface CustomMatGridItem {
   sku: number;
   name: string;
   brand: string;
@@ -11,7 +18,7 @@ export interface SpiritInfo {
 }
 
 // TODO: replace this with real data from your application
-export const SPIRTIS_DATA: SpiritInfo[] = [
+const EXAMPLE_DATA: CustomMatGridItem[] = [
   {
     sku: 11111111,
     name: "Willett Bourbon 750ml",
@@ -541,3 +548,113 @@ export const SPIRTIS_DATA: SpiritInfo[] = [
     modate: "Yesterday",
   },
 ];
+
+/**
+ * Data source for the CmpMatTable view. This class should
+ * encapsulate all logic for fetching and manipulating the displayed data
+ * (including sorting, pagination, and filtering).
+ */
+export class CustomMatGridDataSource extends DataSource<CustomMatGridItem> {
+  data: CustomMatGridItem[] = EXAMPLE_DATA;
+  paginator: MatPaginator | undefined;
+  sort: MatSort | undefined;
+
+  constructor() {
+    super();
+  }
+
+  /**
+   * Connect this data source to the table. The table will only update when
+   * the returned stream emits new items.
+   * @returns A stream of the items to be rendered.
+   */
+  connect(): Observable<CustomMatGridItem[]> {
+    if (this.paginator && this.sort) {
+      // Combine everything that affects the rendered data into one update
+      // stream for the data-table to consume.
+      return merge(
+        observableOf(this.data),
+        this.paginator.page,
+        this.sort.sortChange,
+      ).pipe(
+        map(() => {
+          return this.getPagedData(this.getSortedData([...this.data]));
+        }),
+      );
+    } else {
+      throw Error(
+        "Please set the paginator and sort on the data source before connecting.",
+      );
+    }
+  }
+
+  /**
+   *  Called when the table is being destroyed. Use this function, to clean up
+   * any open connections or free any held resources that were set up during connect.
+   */
+  disconnect(): void {}
+
+  /**
+   * Paginate the data (client-side). If you're using server-side pagination,
+   * this would be replaced by requesting the appropriate data from the server.
+   */
+  private getPagedData(data: CustomMatGridItem[]): CustomMatGridItem[] {
+    if (this.paginator) {
+      const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
+      return data.splice(startIndex, this.paginator.pageSize);
+    } else {
+      return data;
+    }
+  }
+
+
+  /**
+   * Filter the data
+   * 
+   */
+  // private getFilteredData(term, data: CustomMatGridItem[]): CustomMatGridItem[] {
+  //   const filterValue = (term);
+  //   if (this.paginator) {
+  //     console.log("filter data")
+  //     return this.data.filter = filterValue.trim().toLowerCase();;
+  //   } else {
+  //     console.log("serve data")
+  //     return data;
+  //   }
+  // }
+
+  /**
+   * Sort the data (client-side). If you're using server-side sorting,
+   * this would be replaced by requesting the appropriate data from the server.
+   */
+  private getSortedData(data: CustomMatGridItem[]): CustomMatGridItem[] {
+    if (!this.sort || !this.sort.active || this.sort.direction === "") {
+      return data;
+    }
+
+    return data.sort((a, b) => {
+      const isAsc = this.sort?.direction === "asc";
+      switch (this.sort?.active) {
+        case "name": return compare(a.name, b.name, isAsc);
+        case "sku": return compare(+a.sku, +b.sku, isAsc);
+        case "brand": return compare(+a.brand, +b.brand, isAsc);
+        case "stock": return compare(+a.stock, +b.stock, isAsc);
+        case "cost": return compare(+a.cost, +b.cost, isAsc);
+        case "price": return compare(+a.price, +b.price, isAsc);
+        case "status": return compare(+a.status, +b.status, isAsc);
+        case "modate": return compare(+a.modate, +b.modate, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+}
+
+/** Simple sort comparator for client-side sorting. */
+function compare(
+  a: string | number,
+  b: string | number,
+  isAsc: boolean,
+): number {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
