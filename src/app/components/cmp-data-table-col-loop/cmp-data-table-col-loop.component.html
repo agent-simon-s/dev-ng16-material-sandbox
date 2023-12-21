@@ -1,4 +1,5 @@
 <!-- for columns -->
+<p class="description">Looping basic table where the row templates loop through the Columns specified/ Have added pagination</p>
 <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8 demo-table">
     @for (column of columns; track column) {
         <ng-container [matColumnDef]="column.columnDef">

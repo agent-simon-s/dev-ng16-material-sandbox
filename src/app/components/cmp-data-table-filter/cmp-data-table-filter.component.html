@@ -1,7 +1,12 @@
+<p class="description">A basic table with Filtering. Used as a nit as wel las with an external search form component</p>
+
+@if (showSearch) { }
 <mat-form-field>
   <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Filter on..." #input>
+  <!-- <input matInput (keyup)="applyFilter($event)" placeholder="Filter on..." #input> -->
 </mat-form-field>
+
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
@@ -30,7 +35,7 @@
 
     <!-- Fruit Column -->
     <ng-container matColumnDef="cost">
-      <th mat-header-cell *matHeaderCellDef> cost </th>
+      <th mat-header-cell *matHeaderCellDef> Cost </th>
       <td mat-cell *matCellDef="let row"> {{row.cost}} </td>
     </ng-container>
 
