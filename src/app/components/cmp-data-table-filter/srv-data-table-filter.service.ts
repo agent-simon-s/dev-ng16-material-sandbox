@@ -1,20 +1,35 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 //import { MerchandiseInfo, MERCHANT_DATA } from "../../data/items_data";
+import { SpiritInfo, SPIRITS_DATA } from "../../data/firewater_data";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
+
 export class DataTableFilterService {
-  protected myDataStore: string = "This is may data string";
+  // private search$ = new BehaviorSubject<string[]>([]);
+
+  //protected myDataStore: string = "This is may data string";
+  protected spiritItemsListData: SpiritInfo[] = SPIRITS_DATA; 
 
   showSibling = new Subject<boolean>();
 
   constructor() { }
 
   myGetMethod(){
-    return this.myDataStore;
+    // return this.myDataStore;
   }
 
   myOtherGetMethod(value:String):any {
-    return console.log("My Value is", value)
+    // return console.log("My Value is", value)
+  }
+
+  getAllSpiritItems() : SpiritInfo[] {
+    return this.spiritItemsListData;
+  }
+
+  getSpiritItembyId(id:number) : SpiritInfo | undefined {
+    return this.spiritItemsListData.find( spiritItem => spiritItem.sku === id );
   }
 }
