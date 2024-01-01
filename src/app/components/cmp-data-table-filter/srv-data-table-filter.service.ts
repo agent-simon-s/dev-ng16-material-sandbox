@@ -17,12 +17,13 @@ export class DataTableFilterService {
 
   constructor() { }
 
-  myGetMethod(){
+  myTestGetMethod(){
     // return this.myDataStore;
+    console.log("myTestGetMethod")
   }
 
-  myOtherGetMethod(value:String):any {
-    // return console.log("My Value is", value)
+  myOtherTestGetMethod(value:String):any {
+    return console.log("My OtherTestGetMethod Value is", value)
   }
 
   getAllSpiritItems() : SpiritInfo[] {

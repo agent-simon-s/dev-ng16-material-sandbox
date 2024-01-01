@@ -1,11 +1,11 @@
-import {Component, Input, ViewChild} from '@angular/core';
-import { MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-//import {MatSort, MatSortModule} from '@angular/material/sort';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { MerchandiseInfo, MERCHANT_DATA } from "../../data/items_data";
-
+import { Component, Input, Inject, ViewChild } from '@angular/core';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, MatSortModule} from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { DataTableFilterService } from "./srv-data-table-filter.service";
+import { SpiritInfo, SPIRITS_DATA } from "../../data/firewater_data";
 /**
  * @title Data Table with filtering.
  */
@@ -19,39 +19,31 @@ import { MerchandiseInfo, MERCHANT_DATA } from "../../data/items_data";
 })
 
 export class CmpDataTableFilterComponent {
+  spiritItemsList: SpiritInfo[] = [];
+  dataTableFilterService  = Inject(DataTableFilterService);
+
+  // constructor() {
+  //   this.spiritItemsList = this.dataTableFilterService.getAllSpiritItems();
+  // }
+
+
   displayedColumns: string[] = ['sku', 'name', 'price', 'cost'];
-  dataSource = new MatTableDataSource(MERCHANT_DATA);
+  dataSource = new MatTableDataSource(SPIRITS_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  // @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatSort) sort!: MatSort;
 
   @Input() updateGridData: string = "";
-  // @Input() url: string = "";
-  // @Input() filterDataUrl: string = "";
   @Input() showSearch: boolean = true;
-  // @Input() gridStructure: GridStructure[] = [];
-  // @Input() gridStructure: string = "";
-  // @Input() rowsheight: number = 50;
-  // @Input() statusbarheight: number = 60;
-  // @Input() pagermode: any = "default";
   @Input() pageindex: number = 3;
   @Input() pagesize: number = 6;
   @Input() pagesizeoptions = [6, 10, 20];
   @Input() pagerheight = 60;
-  //@Input() autoheight: boolean = true;
   @Input() pageable: boolean =true;
   @Input() sortable: boolean =true;
-  @Input() linkItem: boolean =false;
+  @Input() linkItem: boolean =true;
   @Input() linkMore: boolean =true;
   @Input() columnsSelected: any[] = [];
-
-  // constructor() {
-  //   // Create 100 users
-  //   const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
-  //   // Assign the data to the data source for the table to render
-  //   this.dataSource = new MatTableDataSource(users);
-  // }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -65,26 +57,10 @@ export class CmpDataTableFilterComponent {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+    //this.dataTableFilterService.myTestGetMethod();
   }
 
   myClickMethod(id:string): void {
     console.log(id);
   }
 }
-
-
-// /** Builds and returns a new User. */
-// function createNewUser(id: number): UserData {
-//   const name =
-//     NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-//     ' ' +
-//     NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-//     '.';
-
-//   return {
-//     id: id.toString(),
-//     name: name,
-//     progress: Math.round(Math.random() * 100).toString(),
-//     fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-//   };
-// }
