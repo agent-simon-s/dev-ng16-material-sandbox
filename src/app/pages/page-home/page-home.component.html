@@ -1,0 +1,49 @@
+<h1>Hello There!</h1>
+<h2>This is a sandbox for sketching out and testing various newer angular patterns, and the latest version of angular material</h2>
+<div>
+      <h3>Lorem ipsum dolor sit&nbsp;</h3>
+</div>
+<div>
+      <h3>Lorem ipsum dolor sit&nbsp;</h3>
+</div>
+<div>
+      <h3>Modal Testing</h3>
+      <ul>
+        <li>
+          <mat-form-field>
+            <mat-label>What are you looking for?</mat-label>
+            <input matInput [(ngModel)]="stub">
+          </mat-form-field>
+        </li>
+        <li>
+          <button mat-raised-button (click)="openDialog()">Try Alt Searches</button>
+        </li>
+        <li>
+          {{search}}
+        </li>
+        @if(search === 'catalog'){
+          <li>
+            <h4>Add from Vendor Catalog</h4>
+            <span>Things.</span>
+          </li>
+        }
+        @if(search === 'common'){
+          <li>
+            <h4>Add from Most Common </h4>
+            <span class="note">Select from items most commonly added to an invoice</span>
+          </li>
+        }
+        @if(search === 'recent'){
+          <li>
+            <h4>Add from Most Recent</h4>
+            <span class="note">Select from items most recently added to an invoice</span>
+          </li>
+        }
+        @if(search === 'new'){
+          <li>
+            <h4>Create a new Item</h4>
+            <span>New items are saved in a draft state until more information is provided.</span>
+          </li>
+        }
+      </ul>
+</div>
