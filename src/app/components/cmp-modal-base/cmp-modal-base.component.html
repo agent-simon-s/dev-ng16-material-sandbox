@@ -1,0 +1,39 @@
+<h1 mat-dialog-title>cmp-modal-base works!</h1>
+<div mat-dialog-content>
+  <p>Lorem ipsum dolor sit, amet consectetur, adipisicing elit. Sit culpa, commodi corporis eius iusto aliquam illum optio corrupti, inventore veritatis natus assumenda nisi ex id adipisci ut possimus esse magnam?</p>
+
+  <p>You want to search _____</p>
+
+
+  <p>What's Look-up Method?</p>
+  <!-- <mat-form-field> -->
+    <!-- NOTE With form-filed we get fromating & label, but also breaking error "page-home.component.ts:29 ERROR Error: mat-form-field must contain a MatFormFieldControl." -->
+    <mat-radio-group [(ngModel)]="searchType">
+      <!-- this one is using 'searches', single val array -->
+      <!-- @for (search of searches; track search) {
+        <mat-radio-button class="my-mat-radio" [value]="search">{{search}}</mat-radio-button>
+      } -->
+      <!-- this one is using 'lookUpMethods', multi val object -->
+      @for (method of lookUpMethods; track method) {
+        <mat-radio-button class="my-mat-radio" [value]="method.val">{{method.name}}</mat-radio-button>
+      }
+      <!-- this one is using 'searches', single val array -->
+      <!-- <mat-radio-button value="catalogue">Add from Vendor Catalog</mat-radio-button> -->
+      <!-- <mat-radio-button value="common"> Add from Most Common </mat-radio-button> -->
+      <!-- <mat-radio-button value="recent">Add from Most Recent </mat-radio-button> -->
+      <!-- <mat-radio-button value="new">Create a new Item</mat-radio-button> -->
+      <!-- <mat-radio-button value="2"> New items are saved in a draft state until more information is provided.</mat-radio-button> -->
+    </mat-radio-group>
+  <!-- </mat-form-field> -->
+  <div><p>Your search method is: {{searchType}}</p></div>
+
+  <!-- <span class="note">Select from items most commonly added to an invoice</span>
+  <span class="note">Select from items most recently added to an invoice</span> -->
+  <!-- Go for {{searchType}} -->
+</div>
+
+<div mat-dialog-actions>
+  <!-- <button mat-button mat-dialog-close (click)="onNoClick()">No Thanks</button> -->
+  <button mat-button mat-dialog-close>No Thanks</button>
+  <button mat-button [mat-dialog-close]="searchType" cdkFocusInitial>Ok</button>
+</div>

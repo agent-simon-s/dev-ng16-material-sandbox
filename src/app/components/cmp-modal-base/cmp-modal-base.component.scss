@@ -1,0 +1,35 @@
+::ng-deep .mat-mdc-dialog-container{
+    .mat-mdc-dialog-component-host {
+  }
+}
+
+::ng-deep .my-mat-modal-mask{
+  background-color: rgba(112, 128, 144, 0.33);
+  div.mdc-dialog__container{
+    .mat-mdc-dialog-component-host{
+      padding: 1rem;
+      .mat-mdc-dialog-title{
+        font-weight: bold;
+      }
+      .mat-mdc-dialog-content{
+        padding: 1rem 1rem 0 1rem;
+
+        .my-mat-radio{
+          display: block;
+
+        }
+
+      }
+      .mat-mdc-dialog-actions {
+        background-color: rgba(112, 128, 144, 0.33);
+        justify-content: center;
+        button {
+          min-width: 10rem;
+        }
+      }
+    }
+
+  }
+}
+
+
